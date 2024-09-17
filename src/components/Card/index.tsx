@@ -45,7 +45,7 @@ const Card: React.FC<CardProps> = ({
           className="mt-8 mx-auto md:mx-0 bg-[#2167ae] text-white text-md font-semibold py-2 px-6 rounded-xl shadow-md hover:bg-[#424bb6] transition-all"
           onClick={() => onClick(id)}
         >
-          Show Email
+          {isEmailVisible ? "Hide Email" : "Show Email"}
         </button>
       </div>
     </div>
