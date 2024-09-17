@@ -34,10 +34,8 @@ const LoginPage = () => {
     fetchAuthStatus();
   }, [dispatch, router]);
 
-  // Show loading screen while fetching authentication status
   if (loading) return <LoadingScreen />;
 
-  // Conditional rendering based on authentication status
   return authStatus.isAuthenticated ? (
     <div>Redirecting to dashboard...</div>
   ) : (
