@@ -4,7 +4,7 @@ import Modal from "../../components/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthStatus } from "../../redux/authSlice";
 import { RootState, AppDispatch } from "../../redux/store";
-import { fetchUsers, filterUsers } from "../../redux/userSlice";
+import { fetchUsers } from "../../redux/userSlice";
 import { getAuth } from "../actions";
 import LoadingScreen from "../../components/LoadingScreen";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,7 @@ const Dashboard = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const authStatus = useSelector((state: RootState) => state.auth);
-  const { filteredUsers, status, error } = useSelector(
+  const { users, status, error } = useSelector(
     (state: RootState) => state.users
   );
 
@@ -45,12 +45,6 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (status === "succeeded") {
-      dispatch(filterUsers());
-    }
-  }, [status, dispatch]);
 
   const toggleEmailVisibility = (id: number) => {
     setVisibleEmailIds((prev) => {
@@ -93,7 +87,7 @@ const Dashboard = () => {
     <div className="flex flex-col items-center gap-4">
       <h1 className="text-xl font-bold">Filtered Users</h1>
       <div className="flex flex-wrap gap-4 justify-center">
-        {filteredUsers.map((user) => (
+        {users.map((user) => (
           <Card
             key={user.id}
             id={user.id}
