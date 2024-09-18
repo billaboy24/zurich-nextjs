@@ -38,7 +38,7 @@ const Card: React.FC<CardProps> = ({
         </h1>
 
         <p className="mt-4 text-dark dark:text-white">
-          {isEmailVisible ? email : "****@****.com"}
+          {isEmailVisible && email}
         </p>
 
         <button
